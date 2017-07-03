@@ -37,10 +37,10 @@ public class PreparedStatementProxy
 extends StatementProxy
 implements PreparedStatement {
     private JtdsPreparedStatement _preparedStatement;
-    
+
     PreparedStatementProxy(ConnectionProxy connection, JtdsPreparedStatement preparedStatement) {
         super(connection, preparedStatement);
-        
+
         _preparedStatement = preparedStatement;
     }
 
@@ -59,7 +59,7 @@ implements PreparedStatement {
         } catch (SQLException sqlException) {
             processSQLException(sqlException);
         }
-        
+
         return null;
     }
 
@@ -78,7 +78,7 @@ implements PreparedStatement {
         } catch (SQLException sqlException) {
             processSQLException(sqlException);
         }
-        
+
         return Integer.MIN_VALUE;
     }
 
@@ -454,7 +454,7 @@ implements PreparedStatement {
         } catch (SQLException sqlException) {
             processSQLException(sqlException);
         }
-        
+
         return false;
     }
 
@@ -575,7 +575,7 @@ implements PreparedStatement {
         } catch (SQLException sqlException) {
             processSQLException(sqlException);
         }
-        
+
         return null;
     }
 
@@ -679,7 +679,7 @@ implements PreparedStatement {
         } catch (SQLException sqlException) {
             processSQLException(sqlException);
         }
-        
+
         return null;
     }
 
@@ -699,8 +699,13 @@ implements PreparedStatement {
      */
     public void setAsciiStream(int parameterIndex, InputStream x, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setAsciiStream(parameterIndex, x, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -717,8 +722,13 @@ implements PreparedStatement {
      */
     public void setBinaryStream(int parameterIndex, InputStream x, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setBinaryStream(parameterIndex, x, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -753,8 +763,13 @@ implements PreparedStatement {
      */
     public void setCharacterStream(int parameterIndex, Reader reader,
             long length) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setCharacterStream(parameterIndex, reader, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -770,8 +785,13 @@ implements PreparedStatement {
      */
     public void setClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setClob(parameterIndex, reader, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -788,8 +808,13 @@ implements PreparedStatement {
      */
     public void setNCharacterStream(int parameterIndex, Reader value,
             long length) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setNCharacterStream(parameterIndex, value, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -813,8 +838,13 @@ implements PreparedStatement {
      */
     public void setNClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setNClob(parameterIndex, reader, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
