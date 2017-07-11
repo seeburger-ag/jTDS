@@ -1,0 +1,78 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <id>dist</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+<!--             <destName>${project.artifactId}.jar</destName> -->
+        </file>
+    </files>
+
+    <fileSets>
+        <fileSet>
+            <includes>
+                <include>README</include>
+                <include>README.SSL</include>
+                <include>README.XA</include>
+                <include>README.SSO</include>
+                <include>CHANGELOG</include>
+                <include>LICENSE</include>
+                <include>conf/**/*.xml</include>
+                <include>conf/**/*.tmpl</include>
+                <include>html/**/*</include>
+            </includes>
+        </fileSet>
+
+        <!-- x86/XA -->
+        <fileSet>
+            <outputDirectory>x86/XA</outputDirectory>
+            <directory>lib/x86/XA</directory>
+            <includes>
+                <include>JtdsXA.dll</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>x86/XA</outputDirectory>
+            <directory>src/XA</directory>
+            <includes>
+                <include>*.sql</include>
+            </includes>
+        </fileSet>
+
+        <!-- x86/SSO -->
+        <fileSet>
+            <outputDirectory>x86/SSO</outputDirectory>
+            <directory>lib/x86/SSO</directory>
+            <includes>
+                <include>ntlmauth.dll</include>
+            </includes>
+        </fileSet>
+
+        <!-- x64/SSO -->
+        <fileSet>
+            <outputDirectory>x64/SSO</outputDirectory>
+            <directory>lib/x64/SSO</directory>
+            <includes>
+                <include>ntlmauth.dll</include>
+            </includes>
+        </fileSet>
+
+        <!-- IA64/SSO -->
+        <fileSet>
+            <outputDirectory>IA64/SSO</outputDirectory>
+            <directory>lib/IA64/SSO</directory>
+            <includes>
+                <include>ntlmauth.dll</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+</assembly>

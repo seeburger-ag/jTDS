@@ -132,6 +132,28 @@
         </plugin>
 
         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+                    <id>dist</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <attach>true</attach>
+                        <descriptors>
+                            <descriptor>assembly.xml</descriptor>
+                        </descriptors>
+                        <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
             <artifactId>maven-deploy-plugin</artifactId>
             <version>2.8.2</version>
         </plugin>
