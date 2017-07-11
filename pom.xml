@@ -68,6 +68,9 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- by default, do not fail on javadoc errors - became more strict with Java8 -->
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     </properties>
 
   <build>
