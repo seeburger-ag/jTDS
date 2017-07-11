@@ -175,6 +175,7 @@
                     <!-- reset to defaults -->
                     <mavenExecutorId>invoker</mavenExecutorId>
                     <useReleaseProfile>true</useReleaseProfile>
+                    <arguments combine.self="override"></arguments>
               </configuration>
             </plugin>
         </plugins>
