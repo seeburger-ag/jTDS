@@ -175,7 +175,6 @@
                     <!-- reset to defaults -->
                     <mavenExecutorId>invoker</mavenExecutorId>
                     <useReleaseProfile>true</useReleaseProfile>
-                    <arguments> -DskipTests</arguments>
               </configuration>
             </plugin>
         </plugins>
