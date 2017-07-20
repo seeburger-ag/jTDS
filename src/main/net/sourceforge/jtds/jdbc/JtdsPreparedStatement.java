@@ -1347,12 +1347,6 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        if (length <= Integer.MAX_VALUE) {
-            // call JDBC 3.0 method taking an int as length
-            setClob(parameterIndex, reader, (int) length);
-            return;
-        }
-
         // TODO Auto-generated method stub
         throw new AbstractMethodError();
     }
@@ -1373,12 +1367,6 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setNCharacterStream(int parameterIndex, Reader value,
             long length) throws SQLException {
-        if (length <= Integer.MAX_VALUE) {
-            // call JDBC 3.0 method taking an int as length
-            setNCharacterStream(parameterIndex, value, (int) length);
-            return;
-        }
-
         // TODO Auto-generated method stub
         throw new AbstractMethodError();
     }
@@ -1407,12 +1395,6 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setNClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        if (length <= Integer.MAX_VALUE) {
-            // call JDBC 3.0 method taking an int as length
-            setNClob(parameterIndex, reader, (int) length);
-            return;
-        }
-
         // TODO Auto-generated method stub
         throw new AbstractMethodError();
     }
