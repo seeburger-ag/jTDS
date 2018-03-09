@@ -67,6 +67,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>ISO8859-1</project.build.sourceEncoding>
 
         <!-- by default, do not fail on javadoc errors - became more strict with Java8 -->
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
@@ -123,7 +124,7 @@
                 <archive>
                     <manifestEntries>
                         <Implementation-Title>jTDS JDBC Driver</Implementation-Title>
-                        <Implementation-Version>${version}</Implementation-Version>
+                        <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-URL>http://jtds.sourceforge.net</Implementation-URL>
                         <Specification-Title>JDBC</Specification-Title>
                         <Specification-Version>3.0</Specification-Version>
