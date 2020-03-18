@@ -167,7 +167,7 @@
         <dd>Application name. No practical use, it's displayed by Enterprise Manager
           or Profiler associated with the connection.</dd>
         <dt><code>autoCommit</code> (default - <code>&quot;true&quot;</code>)</dt>
-        <dd>Auto Commit. The jTDS driver enables auto commit by default. Use this option to 
+        <dd>Auto Commit. The jTDS driver enables auto commit by default. Use this option to
         	disable auto commit for newly created connections.</dd>
         <dt><code>batchSize</code> (default - <code>0</code> for SQL Server;
           <code>1000</code> for Sybase)</dt>
@@ -266,7 +266,7 @@
         <dd>The amount of LOB data to buffer in memory before caching to disk. The
           value is in bytes for <code>Blob</code> data and chars for <code>Clob</code>
           data.</dd>
-        <dt><code>loginTimeout</code> (default - <code>0</code> for TCP/IP connections
+        <dt><code>loginTimeout</code> (default [seeburger] - <code>30</code> for TCP/IP connections
           or <code>20</code> for named pipe connections)</dt>
         <dd>The amount of time to wait (in seconds) for a successful connection
           before timing out.<br/>
@@ -361,7 +361,7 @@
           detecting dead network connections in a pooled environment.  See also
           <code>loginTimeout</code>. If using named pipes via JCIFS the timeout cannot be
           disabled completely. A timeout of about 25 days (2^31 ms) is applied instead.</dd>
-        <dt><code>socketKeepAlive</code> (default - <code>false</code>)</dt>
+        <dt><code>socketKeepAlive</code> (default [seeburger])- <code>true</code>)</dt>
         <dd>true to enable TCP/IP keep-alive messages</dd>
         <dt><code>ssl</code> (default - <code>off</code>)</dt>
         <dd>Specifies if and how to use SSL for secure communication.
@@ -881,15 +881,15 @@
         setting.</p>
       <p>For more information about URL format and the properties that may be
         passed to jTDS have a look at the <a href="#urlFormat">jTDS URL format</a>.</p>
-      <p class="question"><a name="connectOmnibus"></a>What do i have to do to connect 
+      <p class="question"><a name="connectOmnibus"></a>What do i have to do to connect
         to Netcool Omnibus (or any derived Product).</p>
       <p>You are required to use TDS 5.0 to communicate with the Omnibus Server and
-        set a default charset to avoid SQL errors, so your URL will look like: 
+        set a default charset to avoid SQL errors, so your URL will look like:
         <code>jdbc:jtds:sybase://NCO:4100;TDS=5.0;charset=iso_1</code>.
 		Since the Omnibus Server understands only a limited subset of SQL, you cannot
 		use prepared Statements.
 		</p>
-        
+
       <p><a href="#">^ top ^</a></p>
 
       <p class="title">Technical support</p>

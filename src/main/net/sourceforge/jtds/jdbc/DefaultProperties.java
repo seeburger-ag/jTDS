@@ -80,7 +80,7 @@ public final class DefaultProperties {
     /** Default <code>lobBufferSize</code> property. */
     public static final String LOB_BUFFER_SIZE = "32768";
     /** Default <code>loginTimeout</code> property. */
-    public static final String LOGIN_TIMEOUT = "0";
+    public static final String LOGIN_TIMEOUT = "30";
     /** Default <code>macAddress</code> property. */
     public static final String MAC_ADDRESS = "000000000000";
     /** Default <code>maxStatements</code> property. */
@@ -138,7 +138,7 @@ public final class DefaultProperties {
     /** Default <code>sockeTimeout</code> property. */
     public static final String SOCKET_TIMEOUT = "0";
     /** Default <code>socketKeepAlive</code> property. */
-    public static final String SOCKET_KEEPALIVE = "false";
+    public static final String SOCKET_KEEPALIVE = "true";
     /** Default <code>processId</code> property. */
     public static final String PROCESS_ID = "123";
 
