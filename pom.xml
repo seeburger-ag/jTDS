@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.seeburger.fork.jtds</groupId>
   <artifactId>jtds</artifactId>
-  <version>1.3.1.SEE3</version>
+  <version>1.3.2.SEE3-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>jTDS</name>
 
@@ -35,7 +35,7 @@
         <connection>scm:git:git://github.com/seeburger-ag/jTDS.git</connection>
         <developerConnection>scm:git:git@github.com:seeburger-ag/jTDS.git</developerConnection>
         <url>http://github.com/seeburger-ag/jTDS</url>
-    <tag>jtds-1.3.1.SEE3</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
