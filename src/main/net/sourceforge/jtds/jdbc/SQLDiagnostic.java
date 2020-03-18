@@ -141,6 +141,7 @@ class SQLDiagnostic {
         mssqlStates.put(new Integer(2625), "40001"); // ADDED
         mssqlStates.put(new Integer(2626), "23000"); // ADDED
         mssqlStates.put(new Integer(2627), "23000");
+        mssqlStates.put(new Integer(2628), "22001"); // ADDED used via DataTruncation
         mssqlStates.put(new Integer(2714), "S0001"); // MODIFIED: was 42S01 (Microsoft is S0001)
         mssqlStates.put(new Integer(2760), "42000");
         mssqlStates.put(new Integer(2812), "37000");
@@ -190,7 +191,7 @@ class SQLDiagnostic {
         mssqlStates.put(new Integer(8115), "22003");
         mssqlStates.put(new Integer(8134), "22012");
         mssqlStates.put(new Integer(8144), "37000");
-        mssqlStates.put(new Integer(8152), "22001");
+        mssqlStates.put(new Integer(8152), "22001"); // used via DataTruncation
         mssqlStates.put(new Integer(8162), "37000"); // ADDED
         mssqlStates.put(new Integer(8153), "01003");
         mssqlStates.put(new Integer(8506), "25000");
@@ -378,6 +379,7 @@ class SQLDiagnostic {
             if ((serverType == Driver.SQLSERVER &&
                     (number == 8152 ||
                      number == 8115 ||
+                     number == 2628 || // SQL Server 2017+ TRACEON(460)
                      number == 220)) ||
                 (serverType == Driver.SYBASE &&
                     (number == 247 ||
@@ -385,7 +387,7 @@ class SQLDiagnostic {
                 SQLException tmp = e;
                 e = new DataTruncation(-1, false, false, -1, -1);
                 // Chain the original exception as this has useful info.
-                e.setNextException(tmp);
+                e.initCause(tmp);
             }
 
             addException(e);
@@ -456,7 +458,7 @@ class SQLDiagnostic {
                                        final int serverType,
                                        final String defState) {
         final HashMap stateTable = (serverType == Driver.SYBASE) ? sybStates : mssqlStates;
-        final String state = (String) stateTable.get(new Integer(number));
+        final String state = (String) stateTable.get(Integer.valueOf(number));
 
         if (state != null) {
             return state;
