@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 import net.sourceforge.jtds.jdbc.cache.*;
 import net.sourceforge.jtds.util.*;
@@ -230,7 +231,7 @@ public class JtdsConnection implements java.sql.Connection {
     /** Map large types (IMAGE and TEXT/NTEXT) to LOBs by default. */
     private boolean useLOBs;
     /** A cached <code>TdsCore</code> instance to reuse on new statements. */
-    private TdsCore cachedTds;
+    private AtomicReference<TdsCore> cachedTds;
     /** The local address to bind to when connecting to a database via TCP/IP. */
     private String bindAddress;
     /** Force use of jCIFS library on Windows when connecting via named pipes. */
@@ -2030,10 +2031,10 @@ public class JtdsConnection implements java.sql.Connection {
     * @throws SQLException
     *    if an error occurs while closing or cleaning up
     */
-   synchronized void releaseTds( TdsCore tds )
+   void releaseTds( TdsCore tds )
       throws SQLException
    {
-      if( cachedTds != null )
+      if (cachedTds.get() != null)
       {
          // There's already a cached TdsCore; close this one
          tds.close();
@@ -2043,7 +2044,10 @@ public class JtdsConnection implements java.sql.Connection {
          // No cached TdsCore; clean up this one and cache it
          tds.clearResponseQueue();
          tds.cleanUp();
-         cachedTds = tds;
+         if (!cachedTds.compareAndSet(null, tds))
+         {
+             tds.close();
+         }
       }
    }
 
@@ -2052,12 +2056,9 @@ public class JtdsConnection implements java.sql.Connection {
      * nothing is cached and resets the cache (sets it to <code>null</code>).
      *
      * @return the value of {@link #cachedTds}
-     * @todo Should probably synchronize on another object
      */
-    synchronized TdsCore getCachedTds() {
-        TdsCore result = cachedTds;
-        cachedTds = null;
-        return result;
+    TdsCore getCachedTds() {
+        return cachedTds.getAndSet(null);
     }
 
     //
@@ -2133,9 +2134,9 @@ public class JtdsConnection implements java.sql.Connection {
                         baseTds.close();
                     }
                     // Close cached TdsCore
-                    if (cachedTds != null) {
-                        cachedTds.close();
-                        cachedTds = null;
+                    TdsCore ctds = getCachedTds();
+                    if (ctds != null) {
+                        ctds.close();
                     }
                 } catch (SQLException ex) {
                     // Ignore
